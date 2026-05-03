@@ -1,13 +1,12 @@
 # 🧠 Custom 32-bit CPU Design in Logisim
 
 > A complete custom 32-bit CPU designed and implemented in Logisim, featuring a full datapath, control unit, ALU, register file, memory system, and branching logic.
-
 ---
 
 ## 👩‍💻 Authors
 
 - **Lana Sayes**
-- **Tasneem Shella**
+- **Tasneem Shelleh**
 
 ---
 
