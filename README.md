@@ -1,6 +1,6 @@
 # 🧠 Custom 32-bit Processor (Logisim)
 
-> A fully functional 32-bit processor designed and implemented using Logisim, featuring a complete datapath, control logic, ALU operations, register management, and branching mechanisms.
+> A complete 32-bit processor designed from scratch using digital logic in Logisim, demonstrating full datapath execution, control logic integration, and modular CPU architecture.
 
 ---
 
@@ -11,18 +11,22 @@
 ---
 
 ## 📌 Overview
-This project presents the design and implementation of a **custom 32-bit processor** using digital logic principles in **Logisim**.
 
-It demonstrates:
-- Full datapath execution
-- Control signal generation
-- Register-based operations
-- Memory interaction
-- Branching logic
+This project implements a **custom-designed 32-bit processor** using Logisim.  
+It simulates how real processors execute instructions through a structured datapath and control logic.
+
+The system integrates:
+- Instruction Fetch & Decode
+- Register-based execution
+- ALU operations
+- Memory access
+- Branching decisions
+
+The design follows a **modular architecture**, separating datapath components from control logic, similar to real-world CPU design principles.
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ High-Level Architecture
 
 ```mermaid
 flowchart LR
