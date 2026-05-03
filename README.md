@@ -150,11 +150,10 @@ Uses logic gates to determine next PC value.
 
 ---
 
-## 👩‍💻 Author
+## 👩‍💻 Authors
 
-**Lana Sayes**  
-Computer Engineering Student  
-Birzeit University
+- Lana Sayes  
+- Tasneem Shella
 
 ---
 
