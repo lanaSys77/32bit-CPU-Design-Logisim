@@ -1,0 +1,234 @@
+RegDist(1)
+0>Rx
+1>R7
+
+RegWrite(1)
+0>no write on reg
+1>write on reg
+
+ExtensionOp(1)
+0> zero ext. Imm5 
+1> sign ext. Imm5 
+
+input2Sel(2)
+00> BusZ
+01> Imm5
+10> Imm11
+11> Imm3Imm2
+
+MemoWrite(1)
+0>noWrite
+1>Write
+
+MemoRead(1)
+0>noRead
+1>Read
+
+WriteBackData(2)
+00>ALU Result
+01>Data Memo
+10>PC+2
+
+RegPC(2)
+00> PC+2
+01> PC+SImm5
+10> PC+SImm11
+------------------
+RegDist_RegWrite_ExtensionOp_input2Sel_MemoWrite_MemoRead_WriteBackData
+Ex. AND > Op=0(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 0 1000 0000B >> 0x080
+
+Ex. CAND > Op=0(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 0 1000 0000B >> 0x080
+
+Ex. OR > Op=0(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010_0000_00B >> 0x080
+
+Ex. XOR > Op=0(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010000000B >> 0x080
+
+Ex. ADD > Op=1(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010000000B >> 0x080
+
+Ex. NADD > Op=1(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010000000B >> 0x080
+
+Ex. SEQ > Op=1(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010000000B >> 0x080
+
+Ex. SLT > Op=1(Rx,Ry,Rz)
+0_1_0_00_0_0_00 >> 010000000B >> 0x080
+
+
+
+Ex. ANDI > Op=2(Rx,Ry,zero_extend(Imm5))
+0_1_0_01_0_0_00 >> 010010000B >> 0x090
+
+Ex. CANDI > Op=3(Rx,Ry,zero_extend(Imm5))
+0_1_0_01_0_0_00_10 >> 010010000B >> 0x090
+
+Ex. ORI > Op=4(Rx,Ry,zero_extend(Imm5))
+0_1_0_01_0_0_00 >> 010010000B >> 0x090
+
+Ex. XORI > Op=5(Rx,Ry,zero_extend(Imm5))
+0_1_0_01_0_0_00 >> 010010000B >> 0x090
+
+Ex. ADDI > Op=6(Rx,Ry,sign_extend(Imm5))
+0_1_1_01_0_0_00 >> 0 1101 0000B >> 0x0d0
+
+Ex. NADDI > Op=7(Rx,Ry,sign_extend(Imm5))
+0_1_1_01_0_0_00 >> 011010000B >> 0x0d0
+
+Ex. SEQI > Op=8(Rx,Ry,sign_extend(Imm5))
+0_1_1_01_0_0_00 >> 011010000B >> 0x0d0
+
+Ex. SLTI > Op=9(Rx,Ry,sign_extend(Imm5))
+0_1_1_01_0_0_00 >> 011010000B >> 0x0d0
+
+
+Ex. SLL > Op=10(Rx,Ry,Imm5)
+0_1_0_01_0_0_00 >> 0 1001 0000B >> 0x090
+
+Ex. SRL > Op=11(Rx,Ry,Imm5)
+0_1_0_01_0_0_00 >> 0 1001 0000B >> 0x090
+
+Ex. SRA > Op=12(Rx,Ry,Imm5)
+0_1_0_01_0_0_00 >> 0 1001 0000B >> 0x090
+
+Ex. ROR > Op=13(Rx,Ry,Imm5)
+0_1_0_01_0_0_00 >> 0 1001 0000B >> 0x090
+
+
+
+Ex. BEQ > Op=14(Rx,Ry,Imm5)
+0_1_1_01_0_0_00 >> 0 1101 0000B >> 0x0d0
+
+Ex. BNE > Op=15(Rx,Ry,Imm5)
+0_1_1_01_0_0_00 >> 0 1101 0000B >> 0x0d0
+
+Ex. BLT > Op=16(Rx,Ry,Imm5)
+0_1_1_01_0_0_00 >> 0 1101 0000B >> 0x0d0
+
+Ex. BGE > Op=17(Rx,Ry,Imm5)
+0_1_1_01_0_0_00 >> 0 1101 0000B >> 0x0d0
+
+
+Ex. LW > Op=18(Rx,Ry,Imm5)
+0_1_1_01_0_1_00 >> 0 1101 0100B >> 0x0d4
+
+Ex. SW > Op=19(Rx,Ry,Imm5)
+0_0_0_11_1_0_01 >> 0 0011 1001B >> 0x039
+
+Ex. J > Op=20(Rx,Ry,Imm5)
+0_1_1_10_0_0_10 >> 0 1110 0010B >> 0x0E2
+
+Ex. JAL > Op=21(Rx,Ry,Imm5)
+1_1_1_10_0_0_00 >> 1 1110 0000B >> 0x1E0
+
+
+--------------------------------------------------
+
+ALU 
+EX XOR Op=0 f= 3 ALUOP= 0000
+0000011B -> 0x03 
+
+EX AND Op=0 f=0 ALUOP = 0001
+0000000B -> ox00 
+
+EX OR Op= 0 f =2 ALUOP = 0010
+0000010b -> ox02 
+
+EX ADD Op = 1 f=0 ALUOP= 0011
+0000100B -> ox04 
+
+EX CAND Op = 0 f=1 ALUOP= 0100
+0000001B -> ox01 
+
+EX NADD Op = 1 f=1 ALUOP = 0101
+0000101B -> ox05 
+
+Ex. SEQ op=1 f=2 ALUOP = 0110
+00_0110B -> 0x06
+
+Ex. SLT op=1 f=3 ALUOP = 0111
+00_0111B -> 0x07
+
+Ex. SRA op=12 f=xx ALUOP = 1000
+00> 011_0000B -> 0x30
+01> 011_0001B -> 0x31
+10> 011_0010B -> 0x32
+11> 011_0011B -> 0x33
+
+Ex. SRL op=11 f=xx ALUOP = 1001
+00> 010_1100B -> 0x2c
+01> 010_1101B -> 0x2d
+10> 010_1110B -> 0x2e
+11> 010_1111B -> 0x2f
+
+Ex. SLL op=10 f=xx ALUOP = 1010
+01010 
+f=00 >> 0101000B > ox28
+f=01 >> 0101001B > ox29
+f=10 >> 0101010B > ox2A
+f=11 >> 0101011B > ox2B
+
+Ex. ROR op=13 f=xx ALUOP = 1011
+01101
+f=00 >> 0110100B > ox34
+f=01 >> 0110101B > ox35
+f=10 >> 0110110B > ox36
+f=11 >> 0110111B > ox37
+
+
+
+PC:
+EX : BEQ opcode = 14 ,LE=1 ,E=1 ,G=0 ,RegPc= 01
+0111 0110B = 0x76
+
+EX : BNQ opcode = 15 ,LE=x ,E=0 ,G=x , RegPc= 01
+LE =0 , G= 1 , 0111 1001B = 0x79
+LE =1 , G= 0 , 0111 1100B = 0x7C
+
+EX : BLT opcode = 16 ,LE=0 ,E=0 ,G=1 , RegPc= 01
+1000 0001B = 0x81
+
+EX : BGE opcode = 17 ,LE=1 ,E=X ,G=0 , RegPc= 01
+E=0 , 1000 1100B = 0x8C
+E=1 , 1000 1110B = 0x8E
+
+
+EX : J opcode = 20 ,LE=X ,E=X ,G=X , RegPc= 10 
+LE=0 ,E=0 ,G=1 , 1010 0001B = 0xA1
+LE=1 ,E=1 ,G=0 , 1010 0110B = 0xA6
+LE=1 ,E=0 ,G=0 , 1010 0100B = 0xA4
+
+EX : JAL opcode = 21 ,LE=X ,E=X ,G=X , RegPc= 10
+LE=0 ,E=0 ,G=1 , 1010 1001B = 0xA9
+LE=1 ,E=1 ,G=0 , 1010 1110B = 0xAE
+LE=1 ,E=0 ,G=0 , 1010 1100B = 0xAC
+
+
+TRIAL  :
+ADD R4 , R3 , R2 F=0
+0 0000 1100 0110 1000 = 0X0C68
+
+and R2,R1,
+0000 0011 0010 1000B = 0x0328
+0x0344
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
