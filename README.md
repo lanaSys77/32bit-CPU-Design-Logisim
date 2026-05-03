@@ -2,166 +2,148 @@
 
 ## 📌 Overview
 This project presents the design and implementation of a **custom 32-bit processor** using **Logisim**.  
-The processor follows a simplified architecture that integrates core components such as:
+It demonstrates a complete datapath architecture including instruction execution, control logic, and memory interaction.
 
-- Program Counter (PC)
-- Instruction Memory
-- Control Unit (CU)
-- Register File (REG)
-- Arithmetic Logic Unit (ALU)
-- Data Memory
-- PC Control Unit (Branching Logic)
 
-The system supports multiple instruction types (R-type, I-type, J-type) and demonstrates full data flow from instruction fetch to write-back.
 
 ---
 
 ## 🧩 System Architecture
 
-### 🔹 Main Datapath
-![Main](images/main.png)
+![Main Datapath](images/Main.png)
 
-The main datapath shows how instructions flow through the processor:
-1. Fetch instruction from memory using PC  
-2. Decode instruction fields  
-3. Execute using ALU  
-4. Access memory (if needed)  
-5. Write back results to registers  
+**Description:**  
+This image represents the full processor datapath. It shows how instructions flow from the Program Counter (PC) through instruction memory, register file, ALU, and memory, then back through the write-back stage.
 
 ---
 
 ## ⚙️ Core Components
 
-### 🟣 Control Unit (CU)
-- Generates all control signals:
-  - `RegDst`
-  - `RegWrite`
-  - `ExtOp`
-  - `BSel`
-  - `MemWrite`
-  - `MemRead`
-  - `WriteBack`
-  - `ALUOp`
+### 🟣 Control Unit
 
-- Controls overall behavior based on opcode
+![Control Unit](images/ControlUnit.png)
+
+**Description:**  
+The Control Unit generates all necessary control signals based on the opcode.  
+It manages:
+- Register destination selection
+- Memory read/write operations
+- ALU operation selection
+- Write-back control
+
+---
+
+### 🔁 PC Control Unit (Branching Logic)
+
+![PC Control](images/Pc CU.png)
+
+**Description:**  
+Handles branching decisions using comparison results:
+- Equal (E)
+- Greater than (G)
+- Less or equal (LE)
+
+This unit determines whether to update the PC sequentially or jump to another address.
+
+---
+
+### 🗂️ Register File
+
+![Register File](images/Reg.png)
+
+**Description:**  
+Stores processor data using multiple registers.  
+Supports:
+- Two read ports (BusX, BusY)
+- One write port  
+- Controlled via decoder and clock
 
 ---
 
 ### 🧮 ALU (Arithmetic Logic Unit)
-![ALU](images/alu.png)
 
-Supports:
-- Arithmetic operations (Add, Sub)
-- Logical operations (AND, OR)
-- Shift operations (Logical & Arithmetic)
+![ALU](images/Alu.png)
+
+**Description:**  
+Performs all arithmetic and logical operations including:
+- Addition / Subtraction
+- AND / OR
+- Shifting (logical & arithmetic)
 - Rotate operations
-- Comparison operations
-
-Controlled using `selectorALU`.
+- Comparisons
 
 ---
 
-### 🗂️ Register File (REG)
-![REG](images/reg.png)
+## 🔄 Instruction Execution Flow
 
-- Contains multiple registers (R1 → R7)
-- Supports:
-  - Dual read (BusX, BusY)
-  - Single write
-- Controlled using:
-  - Decoder
-  - Clock
-  - RegWrite signal
-
----
-
-### 🔁 Program Counter & PC Control Unit
-![PC CU](images/pc_cu.png)
-
-Handles:
-- Sequential execution (PC + 2)
-- Branching decisions based on:
-  - Equal (E)
-  - Greater (G)
-  - Less or Equal (LE)
-
-Uses logic gates to determine next PC value.
-
----
-
-### 💾 Data Memory
-- Supports read/write operations
-- Controlled via:
-  - `MemRead`
-  - `MemWrite`
-- Connected to ALU output
-
----
-
-## 🔄 Instruction Flow
-
-1. **Fetch** → Instruction from memory using PC  
-2. **Decode** → Extract opcode & registers  
+1. **Fetch** → Instruction is loaded from memory using PC  
+2. **Decode** → Control Unit interprets opcode  
 3. **Execute** → ALU performs operation  
-4. **Memory** → Access data if needed  
-5. **Write Back** → Store result in registers  
+4. **Memory** → Read/write if needed  
+5. **Write Back** → Result stored in registers  
 
 ---
 
 ## 🛠️ Technologies Used
 
-- 🧩 **Logisim** – Digital circuit design
-- ⚙️ Combinational & Sequential Logic
+- 🧩 Logisim (Circuit Design)
+- ⚙️ Digital Logic Design
 - 🔌 Multiplexers (MUX)
 - 🔢 Decoders
-- 🧠 Control Logic Design
-- 🧮 ALU Design
-- 🗂️ Register File Implementation
+- 🧠 Control Unit Design
+- 🧮 ALU Implementation
+- 🗂️ Register File Design
 
 ---
 
 ## 📄 Documentation
 
-- 📘 Full Report: `report.pdf`
-- ⚙️ Control Signals: `control.txt`
+- `report.pdf` → Full project report  
+- `control.txt` → Control signals logic  
 
 ---
 
 ## ▶️ How to Run
 
 1. Open **Logisim**
-2. Load file: `main.circ`
+2. Load `main.circ`
 3. Enable clock simulation
-4. Run step-by-step or auto simulation
-5. Observe:
+4. Run step-by-step
+5. Observe outputs in:
    - Registers
-   - ALU output
-   - Memory operations
+   - ALU
+   - Memory
 
 ---
 
 ## 💡 Key Features
 
-- ✔️ Modular design (ALU, REG, CU separated)
-- ✔️ Supports multiple instruction formats
-- ✔️ Branching logic implemented
-- ✔️ Clean datapath visualization
-- ✔️ Scalable architecture
+- ✔️ Complete datapath implementation  
+- ✔️ Modular design (ALU, REG, CU separated)  
+- ✔️ Branching logic supported  
+- ✔️ Multiple instruction formats  
+- ✔️ Clean and scalable architecture  
+
+---
+
+## 🤝 Collaboration
+
+This project was developed as a team effort, combining design, implementation, and testing across all processor components.
 
 ---
 
 ## 👩‍💻 Authors
 
 - Lana Sayes  
-- Tasneem Shella
+- Tasneem Shella  
 
 ---
 
-## ⭐ Notes
+## ⭐ Final Note
 
-This project demonstrates a full understanding of:
-- Computer Architecture
-- Datapath Design
-- Control Logic Integration
+This project reflects a strong understanding of:
+- Computer Architecture  
+- Datapath Design  
+- Control Logic Integration  
 
 ---
